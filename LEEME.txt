@@ -1,0 +1,7 @@
+Práctica 4 · Material para copiar a tu proyecto de la práctica 2
+
+app/templates/   -> cópiala completa a tu carpeta app/
+tests/           -> copia los 4 archivos a tu carpeta tests/
+                    (test_orders.py reemplaza al tuyo: la fixture client ahora está en conftest.py)
+
+Después sigue los pasos 2 y 3 de la guía.

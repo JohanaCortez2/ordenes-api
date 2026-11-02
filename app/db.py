@@ -1,0 +1,20 @@
+"""Conexión a la base de datos con SQLAlchemy."""
+from collections.abc import Iterator
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
+
+URL_BD = "sqlite:///./ordenes.db"
+
+# check_same_thread=False: FastAPI puede atender peticiones en distintos hilos
+engine = create_engine(URL_BD, connect_args={"check_same_thread": False})
+SessionLocal = sessionmaker(bind=engine, expire_on_commit=False)
+
+class Base(DeclarativeBase):
+    """Clase base de todos los modelos (tablas)."""
+    pass
+
+def get_session() -> Iterator[Session]:
+    """Dependencia: abre una sesión por petición y la cierra al terminar."""
+    with SessionLocal() as session:
+        yield session
